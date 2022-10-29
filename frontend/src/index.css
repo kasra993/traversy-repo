@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #555;
+  margin: 10px 0;
+}
+.header ul {
+  display: flex;
+  justify-content: space-around;
+
+  width: 50%;
+}
+.header * {
+  text-decoration: none;
+  color: black;
+  list-style: none;
+}
