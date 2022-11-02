@@ -22,12 +22,12 @@ const updateGoals = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Goal not found ");
   }
-  const user = await User.findById(req.user.id);
-  if (!user) {
+  // const user = await User.findById(req.user.id);
+  if (!req.user) {
     res.status(401);
     throw new Error("u are not logged in ");
   }
-  if (goal.user.toString() !== user.id) {
+  if (goal.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("you can not edit the data of another user");
   }
@@ -42,21 +42,19 @@ const deleteGoals = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("there is not such goal");
   }
-  const user = await User.findById(req.user.id);
-  if (!user) {
+  // const user = await User.findById(req.user.id);
+  if (!req.user) {
     res.status(401);
     throw new Error("you are not logged in ");
   }
-  if (user.id !== goal.user.toString()) {
+  if (req.user.id !== goal.user.toString()) {
     res.status(401);
     throw new Error("you can not delete another users goal");
   }
 
   await goal.remove();
 
-  res.json(
-    `the requested goal by the id of ${req.params.id} has been terminated`
-  );
+  res.json(req.params.id);
 });
 
 module.exports = {

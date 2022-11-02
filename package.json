@@ -4,8 +4,10 @@
   "description": "goalsetter",
   "main": "server.js",
   "scripts": {
+    "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "kasra mahsouli",
   "license": "MIT",
@@ -19,6 +21,7 @@
     "mongoose": "^6.7.0"
   },
   "devDependencies": {
+    "concurrently": "^7.5.0",
     "nodemon": "^2.0.20"
   }
 }
